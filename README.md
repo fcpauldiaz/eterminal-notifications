@@ -20,13 +20,13 @@ Pick a hard-to-guess `NTFY_TOPIC` (anyone who knows it can subscribe). Prefer a 
 
 ## Run
 
-Long-running poller (default every 60s):
+Long-running poller (every **30s** during **06:00–15:00 America/New_York**; idle outside that window):
 
 ```bash
 pnpm start
 ```
 
-One-shot (for cron / launchd):
+One-shot (ignores the schedule — for cron / manual checks):
 
 ```bash
 pnpm run once
@@ -47,6 +47,6 @@ Create `~/Library/LaunchAgents/com.eterminal.spx3-alerts.plist` pointing `Workin
 | `NTFY_TOPIC` | — | ntfy topic name |
 | `NTFY_BASE_URL` | `https://ntfy.sh` | ntfy server |
 | `NTFY_TOKEN` | — | Optional bearer token |
-| `POLL_INTERVAL_MS` | `60000` | Poll interval for `pnpm start` |
+| `POLL_INTERVAL_MS` | `30000` | Poll interval while inside 06:00–15:00 ET |
 | `STATE_PATH` | `./state.json` | Known signal IDs |
 | `BASE_URL` | `https://terminal.emini.today` | Terminal origin |

@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { CookieJar } from "./cookies.js";
 import { publishSignalAlert, type NtfyConfig } from "./ntfy.js";
+import { waitForPollWindow } from "./schedule.js";
 import type { KnownState, Spx3Signal, Spx3ViewResponse } from "./types.js";
 
 loadEnv();
@@ -29,7 +30,7 @@ function loadConfig(): AppConfig {
     baseUrl: (process.env.BASE_URL ?? "https://terminal.emini.today").replace(/\/$/, ""),
     email: requireEnv("TERMINAL_EMAIL"),
     password: requireEnv("TERMINAL_PASSWORD"),
-    pollIntervalMs: Number(process.env.POLL_INTERVAL_MS ?? "60000"),
+    pollIntervalMs: Number(process.env.POLL_INTERVAL_MS ?? "30000"),
     statePath: process.env.STATE_PATH ?? "./state.json",
     ntfy: {
       baseUrl: process.env.NTFY_BASE_URL ?? "https://ntfy.sh",
@@ -197,7 +198,9 @@ async function main(): Promise<void> {
   const cfg = loadConfig();
   const jar = new CookieJar();
 
-  console.log(`[boot] base=${cfg.baseUrl} ntfy=${cfg.ntfy.baseUrl}/${cfg.ntfy.topic}`);
+  console.log(
+    `[boot] base=${cfg.baseUrl} ntfy=${cfg.ntfy.baseUrl}/${cfg.ntfy.topic} interval=${cfg.pollIntervalMs}ms window=06:00-15:00 ET`,
+  );
 
   if (once) {
     await tick(cfg, jar);
@@ -205,6 +208,7 @@ async function main(): Promise<void> {
   }
 
   for (;;) {
+    await waitForPollWindow(sleep);
     try {
       await tick(cfg, jar);
     } catch (err) {
