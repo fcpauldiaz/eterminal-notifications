@@ -34,6 +34,32 @@ pnpm run once
 
 The first successful poll writes all current `signals` into `state.json` **without** sending alerts (baseline). Later polls only notify on **new** signal IDs.
 
+## Chrome extension (alerts + flow pills)
+
+Reuses your **existing Chrome login** to Terminal (no password stored). Polls `spx3-view`, notifies via **Chrome notifications** and **ntfy**, and injects bias / near-cross pills on `/user/spx3`.
+
+```bash
+cd chrome-extension
+pnpm install
+pnpm build
+```
+
+Load the extension:
+
+1. Open `chrome://extensions`
+2. Enable **Developer mode**
+3. **Load unpacked** → select `chrome-extension/dist`
+4. Log into [E.T. Terminal](https://terminal.emini.today) in the same Chrome profile
+5. Open the extension popup → set **ntfy topic** (optional but recommended) → **Save**
+6. Visit `https://terminal.emini.today/user/spx3` — pills appear top-right
+
+Popup includes **Test notification** (Chrome + ntfy) so you can verify your topic without waiting for a market event.
+
+Pills:
+
+- **Bullish / Bearish / Neutral** from last `retailFlowSeries[].colorRole`
+- **Near cross** when `|retail − inst|` is below the configurable threshold (default `5`)
+
 ## launchd (macOS, optional)
 
 Create `~/Library/LaunchAgents/com.eterminal.spx3-alerts.plist` pointing `WorkingDirectory` at this repo and `ProgramArguments` at `pnpm` / `start`, then keep it running — or schedule `pnpm run once` on a timer.

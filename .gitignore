@@ -4,3 +4,6 @@ state.json
 package-lock.json
 *.log
 .DS_Store
+chrome-extension/dist/
+chrome-extension/dist.zip
+chrome-extension/node_modules/

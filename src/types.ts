@@ -9,12 +9,23 @@ export type Spx3Signal = {
   source: string;
 };
 
+export type ColorRole = "bullish" | "bearish" | "neutral" | string;
+
+export type FlowPoint = {
+  time: number;
+  value: number;
+};
+
+export type RetailFlowPoint = FlowPoint & {
+  colorRole: ColorRole;
+};
+
 export type Spx3ViewResponse = {
   meta?: unknown;
   priceSeries?: unknown;
   currentPrice?: unknown;
-  retailFlowSeries?: unknown;
-  instFlowSeries?: unknown;
+  retailFlowSeries?: RetailFlowPoint[];
+  instFlowSeries?: FlowPoint[];
   levels?: unknown;
   areas?: unknown;
   profileBars?: unknown;

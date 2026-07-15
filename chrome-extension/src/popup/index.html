@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal Notifications</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <h1>Terminal Notifications</h1>
+        <p id="status" class="status">Checking…</p>
+      </header>
+
+      <label class="row">
+        <span>Monitoring</span>
+        <input id="enabled" type="checkbox" />
+      </label>
+
+      <label class="field">
+        <span>ntfy topic</span>
+        <input id="ntfyTopic" type="text" placeholder="your-unique-topic" autocomplete="off" />
+      </label>
+
+      <label class="field">
+        <span>ntfy base URL</span>
+        <input id="ntfyBaseUrl" type="url" placeholder="https://ntfy.sh" autocomplete="off" />
+      </label>
+
+      <label class="field">
+        <span>ntfy token (optional)</span>
+        <input id="ntfyToken" type="password" placeholder="Bearer token" autocomplete="off" />
+      </label>
+
+      <label class="field">
+        <span>Near-cross threshold</span>
+        <input id="nearCrossThreshold" type="number" min="0" step="0.1" />
+      </label>
+
+      <div class="actions">
+        <button id="save" type="button">Save</button>
+        <button id="pollNow" type="button" class="secondary">Poll now</button>
+        <button id="testNotify" type="button" class="secondary">Test notification</button>
+      </div>
+
+      <p id="feedback" class="feedback" hidden></p>
+    </main>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

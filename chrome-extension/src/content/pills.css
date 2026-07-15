@@ -1,0 +1,113 @@
+#spx3-alerts-pills {
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  pointer-events: none;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.spx3-pill {
+  pointer-events: none;
+  padding: 4px 8px;
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #d0a24b;
+  background: rgba(5, 5, 5, 0.85);
+  border: 1px solid rgba(242, 161, 0, 0.55);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.spx3-pill--bullish {
+  color: #052e16;
+  background: #86d66f;
+  border-color: rgba(134, 214, 111, 0.9);
+}
+
+.spx3-pill--bearish {
+  color: #450a0a;
+  background: #ff6b7a;
+  border-color: rgba(255, 107, 122, 0.9);
+}
+
+.spx3-pill--neutral {
+  color: #1e293b;
+  background: #cbd5e1;
+  border-color: rgba(203, 213, 225, 0.9);
+}
+
+.spx3-pill--unknown {
+  color: #d0a24b;
+  background: rgba(5, 5, 5, 0.85);
+}
+
+.spx3-pill--cross {
+  color: #422006;
+  background: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.9);
+  letter-spacing: 0.08em;
+}
+
+.spx3-pill--session {
+  color: #e2e8f0;
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.55);
+  letter-spacing: 0.12em;
+}
+
+.spx3-pill--mute {
+  color: #fff7ed;
+  background: #9a3412;
+  border-color: rgba(154, 52, 18, 0.9);
+  letter-spacing: 0.08em;
+}
+
+.spx3-pill--mixed {
+  color: #1e1b4b;
+  background: #a5b4fc;
+  border-color: rgba(165, 180, 252, 0.9);
+  letter-spacing: 0.1em;
+}
+
+.spx3-pill--extreme {
+  color: #fff;
+  background: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.9);
+  letter-spacing: 0.08em;
+}
+
+.spx3-pill--opex {
+  color: #0f172a;
+  background: #e2e8f0;
+  border-color: rgba(226, 232, 240, 0.95);
+  letter-spacing: 0.08em;
+}
+
+#spx3-extreme-markers {
+  pointer-events: none;
+}
+
+.spx3-extreme-dot {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.spx3-extreme-dot--green {
+  background: #22c55e;
+}
+
+.spx3-extreme-dot--red {
+  background: #ef4444;
+}

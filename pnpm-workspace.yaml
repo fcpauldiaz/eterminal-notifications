@@ -1,5 +1,6 @@
 packages:
   - "."
+  - "chrome-extension"
 
 allowBuilds:
   esbuild: true
